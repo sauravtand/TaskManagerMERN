@@ -7,14 +7,15 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const login = async (email, password) => {
-    await axios.post(
+    const response = await axios.post(
       "/login",
       { username: email, password },
       { withCredentials: true }
     );
-    setUser({ username: email }); // For demo, we just set it directly
+    localStorage.setItem("token", response.data.token); // Assuming token is in response.data.token
+    setUser({ username: email });
   };
-
+  
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);

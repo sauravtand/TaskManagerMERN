@@ -22,7 +22,7 @@ const Login = () => {
       }, 1500); // Delay to simulate transition
     } catch (err) {
       console.log(err.response.data.msg, "dsads");
-      toast.error(err.response?.msg || "Login failed");
+      toast.error(err.response?.data?.msg || "Login failed");
       setLoading(false);
     }
   };
